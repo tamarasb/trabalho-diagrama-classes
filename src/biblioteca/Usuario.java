@@ -60,4 +60,20 @@ public class Usuario {
         return reservas;
     }
 
+    public void realizarEmprestimo(Exemplar exemplar) {
+        if (exemplar.isDisponivel()) {
+            Emprestimo emprestimo = new Emprestimo(this, exemplar);
+            this.emprestimos.add(emprestimo);
+            exemplar.setDisponivel(false);
+            System.out.println("Empréstimo realizado com sucesso!");
+        } else {
+            System.out.println("Exemplar indisponível.");
+        }
+    }
+
+    public void realizarReserva(Livro livro) {
+        Reserva reserva = new Reserva(livro, this);
+        this.reservas.add(reserva);
+        System.out.println("Livro " + livro.getTitulo() + " reservado.");
+    }
 }
